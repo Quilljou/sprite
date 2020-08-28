@@ -1,0 +1,9 @@
+#! /usr/bin/env node
+
+
+const Cli = require('../lib/Cli.js').default;
+
+
+const cli = new Cli();
+
+cli.run()
