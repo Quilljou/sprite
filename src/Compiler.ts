@@ -8,7 +8,7 @@ export interface ICompilerOptions {
   frameDuration: number;
   preview: boolean;
   algorithm: 'binary-tree' | 'top-down' | 'left-right' | 'diagonal' | 'alt-diagonal';
-  plugins: Iplugin[];
+  plugins: string;
   minify: boolean;
   debug: boolean;
 }
@@ -30,6 +30,8 @@ export class Compiler {
   }
 
   async run(callback: Function) {
+    const startTime = new Date();
+
     await this.hooks.beforeRun.promise();
     await this.hooks.run.promise();
   }

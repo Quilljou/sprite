@@ -1,7 +1,7 @@
 import { ICompilerOptions } from './Compiler';
 
 export class SpriteOptionsDefaulter {
-  process(op: Partial<ICompilerOptions>): ICompilerOptions {
-    return {} as ICompilerOptions;
+  process(options: Partial<ICompilerOptions>): ICompilerOptions {
+    return options as ICompilerOptions;
   }
 }

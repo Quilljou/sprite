@@ -9,19 +9,11 @@ export const sprite = (op: Partial<ICompilerOptions>, callback?: Function) => {
   // Initialize Compiler
   const compiler = new Compiler(options);
 
-  // Register Custom Plugins
-  if (Array.isArray(options.plugins)) {
-    for (const plugin of options.plugins) {
-      if (typeof plugin == 'function') {
-        plugin.call(compiler, compiler);
-      } else {
-        plugin.apply(compiler);
-      }
-    }
-  }
-
   // Apply plugins
   new PluginApply().process(options, compiler);
 
-  compiler.run(callback!);
+  if (callback) {
+    compiler.run(callback);
+  }
+  return compiler;
 };

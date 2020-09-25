@@ -1,5 +1,5 @@
 import minimist from 'minimist';
-import { sprite } from './Sprite';
+import { sprite } from './sprite';
 import { readPackage } from './utils/ReadPackage';
 
 export default class Cli {
@@ -23,13 +23,21 @@ export default class Cli {
         input: path,
         ...argv,
       };
-      sprite(options);
+
+      try {
+        sprite(options, function(err: Error) {
+          console.error(err);
+        });
+      } catch (error) {
+        console.error(error);
+        process.exit(1);
+      }
     }
   }
 
   runVersion() {
     console.log('\n🎨  Sprite v%s\n', readPackage('version'));
-    console.log('For more info, Please visit %s\n', readPackage('repository.url'));
+    console.log('For more information, visit %s\n', readPackage('repository.url'));
   }
 
   runHelp() {
